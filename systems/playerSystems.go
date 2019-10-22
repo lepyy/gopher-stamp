@@ -48,7 +48,7 @@ func (ps *PlayerSystem) Update(dt float32) {
 	}
 
 	if engo.Input.Button("addPlayer").JustPressed() {
-		// fmt.Println("press F1")
+		// fmt.Println("press F1!")
 
 		gopher := Player{BasicEntity: ecs.NewBasic()}
 		gopher.SpaceComponent = common.SpaceComponent{
