@@ -28,14 +28,26 @@ func (*myScene) Setup(updater engo.Updater) {
 	world, _ := updater.(*ecs.World)
 	world.AddSystem(&common.RenderSystem{})
 	world.AddSystem(&systems.PlayerSystem{})
+
+	kbs := common.NewKeyboardScroller(
+		200,
+		engo.DefaultHorizontalAxis,
+		engo.DefaultVerticalAxis,
+	)
+
+	world.AddSystem(kbs)
 	world.AddSystem(&common.MouseSystem{})
+
+	// world.AddSystem(&common.EdgeScroller{ScrollSpeed: 400, EdgeMargin: 20})
+	// world.AddSystem(&common.MouseZoomer{ZoomSpeed: -0.125})
 }
 
 func main() {
 	opts := engo.RunOptions{
-		Title:  "gopher stamp",
-		Width:  640,
-		Height: 480,
+		Title:          "gopher stamp",
+		Width:          640,
+		Height:         480,
+		StandardInputs: true,
 	}
 	engo.Run(opts, &myScene{})
 }

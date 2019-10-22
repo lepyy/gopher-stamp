@@ -52,9 +52,12 @@ func (ps *PlayerSystem) Update(dt float32) {
 
 		gopher := Player{BasicEntity: ecs.NewBasic()}
 		gopher.SpaceComponent = common.SpaceComponent{
-			Position: engo.Point{X: ps.mouseTracker.MouseX, Y: ps.mouseTracker.MouseY},
-			Width:    30,
-			Height:   64,
+			Position: engo.Point{
+				X: ps.mouseTracker.MouseComponent.MouseX,
+				Y: ps.mouseTracker.MouseComponent.MouseY,
+			},
+			Width:  30,
+			Height: 64,
 		}
 
 		texture, err := common.LoadedSprite("textures/gopher.png")
